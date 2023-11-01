@@ -42,14 +42,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = ctrl.NewWebhookManagedBy(mgr).
-		For(&apisv1.AppService{}).
-		Complete()
-	if err != nil {
-		setupLog.Error(err, "unable to create webhook")
-		os.Exit(1)
-	}
-
 	setupLog.Info("starting manager")
 	if err := mgr.Start(ctrl.SetupSignalHandler()); err != nil {
 		setupLog.Error(err, "problem running manager")
