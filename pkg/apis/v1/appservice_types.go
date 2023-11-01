@@ -39,7 +39,3 @@ type AppServiceList struct {
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []AppService `json:"items"`
 }
-
-func init() {
-	SchemeBuilder.Register(&AppService{}, &AppServiceList{})
-}
