@@ -22,9 +22,9 @@ func NewDeploy(app *apisv1.AppService) *appsv1.Deployment {
 
 			OwnerReferences: []metav1.OwnerReference{
 				*metav1.NewControllerRef(app, schema.GroupVersionKind{
-					Group:   apisv1.GroupName,
-					Version: apisv1.Version,
-					Kind:    apisv1.Kind,
+					Group:   app.GroupVersionKind().Group,
+					Version: app.GroupVersionKind().Version,
+					Kind:    app.GroupVersionKind().Kind,
 				}),
 			},
 		},
