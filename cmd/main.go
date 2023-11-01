@@ -24,21 +24,16 @@ func main() {
 	}
 
 	// in a real controller, we'd create a new scheme for this
-	err = apisv1.AddToScheme(mgr.GetScheme())
-	if err != nil {
+	if err = apisv1.AddToScheme(mgr.GetScheme()); err != nil {
 		setupLog.Error(err, "unable to add scheme")
 		os.Exit(1)
 	}
 
-	err = ctrl.NewControllerManagedBy(mgr).
-		For(&apisv1.AppService{}).
-		Complete(&controller.AppServiceReconciler{
-			Client: mgr.GetClient(),
-			Scheme: mgr.GetScheme(),
-		})
-
-	if err != nil {
-		setupLog.Error(err, "unable to create controller")
+	if err = (&controller.AppServiceReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "AppService")
 		os.Exit(1)
 	}
 

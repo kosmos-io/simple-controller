@@ -114,3 +114,10 @@ func (r *AppServiceReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 	}
 	return ctrl.Result{}, nil
 }
+
+// SetupWithManager sets up the controller with the Manager.
+func (r *AppServiceReconciler) SetupWithManager(mgr ctrl.Manager) error {
+	return ctrl.NewControllerManagedBy(mgr).
+		For(&apisv1.AppService{}).
+		Complete(r)
+}
