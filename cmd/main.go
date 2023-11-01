@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kosmos.io/simple-controller/internal/controller"
+	"github.com/kosmos.io/simple-controller/pkg/controller"
 	"os"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"

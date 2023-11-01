@@ -2,7 +2,7 @@ package controller
 
 import (
 	"context"
-	"github.com/kosmos.io/simple-controller/internal/controller/resources"
+	"github.com/kosmos.io/simple-controller/pkg/controller/resources"
 
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
