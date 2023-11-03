@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controller-operator
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+    spec:
+      serviceAccountName: controller-manager
+      containers:
+        - name: operator
+          image: clusterlink-eb203842.ecis-suzhou-1.cmecloud.cn/kosmos-io/mydemo:v0.1.4
+          imagePullPolicy: Always
+          command:
+            - /operator
+          resources:
+            limits:
+              memory: 200Mi
+              cpu: 250m
+            requests:
+              cpu: 100m
+              memory: 200Mi

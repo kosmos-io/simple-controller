@@ -13,7 +13,7 @@ var (
 	setupLog = ctrl.Log.WithName("setup")
 )
 
-func fake_main() {
+func main() {
 	ctrl.SetLogger(zap.New())
 	setupLog.Info("starting manager")
 
