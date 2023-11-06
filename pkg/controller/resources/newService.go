@@ -1,10 +1,11 @@
 package resources
 
 import (
-	apisv1 "github.com/kosmos.io/simple-controller/pkg/apis/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+
+	apisv1 "github.com/kosmos.io/simple-controller/pkg/apis/v1"
 )
 
 func NewService(app *apisv1.AppService) *corev1.Service {

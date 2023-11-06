@@ -2,21 +2,20 @@ package controller
 
 import (
 	"context"
-	"github.com/kosmos.io/simple-controller/pkg/controller/resources"
+	"reflect"
 
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
+	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/util/json"
 	"k8s.io/client-go/util/retry"
-	"reflect"
-
-	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
 	apisv1 "github.com/kosmos.io/simple-controller/pkg/apis/v1"
+	"github.com/kosmos.io/simple-controller/pkg/controller/resources"
 )
 
 // AppServiceReconciler reconciles a AppService object
