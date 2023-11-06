@@ -24,19 +24,7 @@ function cleanup() {
 trap "cleanup" EXIT SIGINT
 cleanup
 
-function create_gopath_tree() {
-  local repo_root=$1
-  local link_path=$2
-
-  go_pkg_dir=$(dirname "${link_path}")
-
-  mkdir -p "${go_pkg_dir}"
-
-  if [[ ! -e "${go_pkg_dir}" || "$(readlink "${go_pkg_dir}")" != "${repo_root}" ]]; then
-    ln -snf "${repo_root}" "${go_pkg_dir}"
-  fi
-}
-create_gopath_tree "${REPO_ROOT}" "${link_path}"
+mkdir -p "$(dirname "${link_path}")"
 
 deepcopy-gen \
   --go-header-file hack/boilerplate.go.txt \
@@ -53,3 +41,6 @@ register-gen \
   --output-base="${REPO_ROOT}" \
   --output-package="pkg/apis/v1" \
   --output-file-base=zz_generated.register
+
+cp -r "${link_path}/pkg/apis/v1" "${REPO_ROOT}/pkg/apis"
+rm -r "${link_path}/pkg/apis/v1"
