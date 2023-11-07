@@ -4,8 +4,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-CLUSTERLINK_GROUP_PACKAGE="github.com"
-CLUSTERLINK_GO_PACKAGE="${CLUSTERLINK_GROUP_PACKAGE}/kosmos.io/simple-controller"
+GROUP_PACKAGE="github.com"
+GO_PACKAGE="${GROUP_PACKAGE}/kosmos.io/simple-controller"
 
 # For all commands, the working directory is the parent directory(repo root).
 REPO_ROOT=$(git rev-parse --show-toplevel)
@@ -16,15 +16,13 @@ GO111MODULE=on go install k8s.io/code-generator/cmd/deepcopy-gen
 export GOPATH=$(go env GOPATH | awk -F ':' '{print $1}')
 export PATH=$PATH:$GOPATH/bin
 
-group_path="${REPO_ROOT}/${CLUSTERLINK_GROUP_PACKAGE}"
-link_path="${REPO_ROOT}/${CLUSTERLINK_GO_PACKAGE}"
 function cleanup() {
-  rm -rf "${group_path}"
+  rm -rf "${REPO_ROOT}/${GROUP_PACKAGE}"
 }
 trap "cleanup" EXIT SIGINT
 cleanup
 
-mkdir -p "$(dirname "${link_path}")"
+mkdir -p "$(dirname "${REPO_ROOT}/${GO_PACKAGE}")"
 
 deepcopy-gen \
   --input-dirs="github.com/kosmos.io/simple-controller/pkg/apis/v1" \
@@ -40,4 +38,4 @@ register-gen \
   --output-package="pkg/apis/v1" \
   --output-file-base=zz_generated.register
 
-mv "${link_path}"/pkg/apis/v1/* "${REPO_ROOT}"/pkg/apis/v1
+mv "${REPO_ROOT}/${GO_PACKAGE}"/pkg/apis/v1/* "${REPO_ROOT}"/pkg/apis/v1
