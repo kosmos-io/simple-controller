@@ -1,12 +1,13 @@
 package main
 
 import (
-	"github.com/kosmos.io/simple-controller/pkg/controller"
 	"os"
+
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	apisv1 "github.com/kosmos.io/simple-controller/pkg/apis/v1"
+	"github.com/kosmos.io/simple-controller/pkg/controller"
 )
 
 var (
