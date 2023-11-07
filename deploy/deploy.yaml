@@ -16,6 +16,8 @@ spec:
       serviceAccountName: controller-manager
       containers:
         - name: operator
+          # TODO You should use your image.
+          # image: <your-registry>/<project-name>:<tag, version>
           image: clusterlink-eb203842.ecis-suzhou-1.cmecloud.cn/kosmos-io/mydemo:v0.2.0
           imagePullPolicy: Always
           command:
