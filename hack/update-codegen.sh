@@ -27,7 +27,6 @@ cleanup
 mkdir -p "$(dirname "${link_path}")"
 
 deepcopy-gen \
-  --go-header-file hack/boilerplate.go.txt \
   --input-dirs="github.com/kosmos.io/simple-controller/pkg/apis/v1" \
   --output-base="${REPO_ROOT}" \
   --output-package="pkg/apis/v1" \
@@ -36,11 +35,9 @@ deepcopy-gen \
 echo "Generating with register-gen"
 GO111MODULE=on go install k8s.io/code-generator/cmd/register-gen
 register-gen \
-  --go-header-file hack/boilerplate.go.txt \
   --input-dirs="github.com/kosmos.io/simple-controller/pkg/apis/v1" \
   --output-base="${REPO_ROOT}" \
   --output-package="pkg/apis/v1" \
   --output-file-base=zz_generated.register
 
-cp -r "${link_path}/pkg/apis/v1" "${REPO_ROOT}/pkg/apis"
-rm -r "${link_path}/pkg/apis/v1"
+mv "${link_path}"/pkg/apis/v1/* "${REPO_ROOT}"/pkg/apis/v1
