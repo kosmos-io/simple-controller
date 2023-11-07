@@ -9,7 +9,7 @@ This example mainly demonstrates how to use the controller-runtime to create an 
 3. How to implement controller business logic
 4. How to debug/deploy locally on a cluster
 
-We use `./hack/update-codegen.sh` to generate the deepcopy and register methods.(`update-codegen.sh` comes from [kosmos-io/kosmos](https://github.com/kosmos-io/kosmos/tree/main)&[k8s.io/code-generator](https://github.com/kubernetes/code-generator))
+We use `./hack/update-codegen.sh` to generate the deepcopy and register file.(`update-codegen.sh` comes from [kosmos-io/kosmos](https://github.com/kosmos-io/kosmos/tree/main)&[k8s.io/code-generator](https://github.com/kubernetes/code-generator))
 
 The update-codegen script will automatically generate the following files:
 
